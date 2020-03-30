@@ -1,3 +1,5 @@
+import random
+
 # data manipulation
 
 # data  = [
@@ -114,6 +116,11 @@ def decode_options(label):
 dict_guess = decode_options(LABEL)
 
 
+def is_numeric(value):
+    """Test if a value is numeric."""
+    return isinstance(value, int) or isinstance(value, float)
+    
+   
 def split_data(data, label, test_size=0):
     if test_size < 0 or test_size > 1:
         raise SyntaxError
