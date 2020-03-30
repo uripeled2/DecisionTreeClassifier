@@ -1,13 +1,5 @@
 # data manipulation
 
-import random
-
-def is_numeric(value):
-    """Test if a value is numeric."""
-    return isinstance(value, int) or isinstance(value, float)
-
-# Collecting data
-
 # data  = [
 #     [anser[0], anser[1], ...]
 #     [same]
@@ -20,6 +12,8 @@ classes = []
 dict_ques_title = {0: "ques about: ", 1: "ques detail: "}
 dict_title = {0: "data: ", 1: "guess: ", 2: "chances: "}
 dict_ques_detail = {1: "כלל לא מסכים", 2: "לא מסכים", 3: "באמצע", 4: "מסכים", 5: "מסכים מאוד", None: "None"}
+
+# Collecting data
 with open("data.csv", encoding="utf-8") as f:
     for i , line in enumerate(f.readlines()):
         if i == 0:
@@ -69,6 +63,8 @@ with open("data.csv", encoding="utf-8") as f:
 
 dict_places = {"מושב": 0, "יישוב": 0, "עיר": 2, "קיבוץ": 1, "UN": -1, None: "None"}
 
+
+# manipulation data 
 
 def data_encode(data_s):
     data = [[]]
