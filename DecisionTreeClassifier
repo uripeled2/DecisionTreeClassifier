@@ -80,7 +80,7 @@ class Node:
         # Only left child.
         if self.right is None:
             lines, n, p, x = self.left._display_aux(clf, lst_of_pickers)
-            s = str(lst
+            s = str(lst)
             u = len(s)
             first_line = (x + 1) * ' ' + (n - x - 1) * '_' + s
             second_line = x * ' ' + '/' + (n - x - 1 + u) * ' '
