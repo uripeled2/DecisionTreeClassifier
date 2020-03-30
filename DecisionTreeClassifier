@@ -1,9 +1,10 @@
+
 from load_data import *
 
 
 class Ques:
     def __init__(self, about, detail):
-        self.about = about 
+        self.about = about
         self.detail = detail
         self.arr = None
 
@@ -37,7 +38,7 @@ class Node:
         self.arr = [len(self.data), self.guess, self.chances]
 
     def display(self, clf, lst_of_pickers):
-        lines, _, _, _ = self._display_aux(clf ,lst_of_pickers)
+        lines, _, _, _ = self._display_aux(clf, lst_of_pickers)
         for line in lines:
             print(line)
 
@@ -65,9 +66,11 @@ class Node:
                 lst.append(dict_title[item.index])
                 if item.index == 1:
                     lst[-1] += dict_guess[self.arr[item.index]]
+                elif item.index == 2 and self.arr[item.index] is not None:
+                    lst[-1] += str(self.arr[item.index] * 100)
+                    lst[-1] += "%"
                 else:
                     lst[-1] += str(self.arr[item.index])
-
 
         # No child.
         if self.right is None and self.left is None:
@@ -121,6 +124,7 @@ class TreeClassifier:
 
     def fit(self, x_train, y):
         self.is_raedy = True
+
         def find_options(train_y):
             unique = set()
             for l in train_y:
@@ -180,7 +184,6 @@ class TreeClassifier:
                         rem_f, rem_t = f, t
             return best_q, rem_f, rem_t
 
-
         def make_tree(lst_of_index):
             q, f, t = find_best_split(lst_of_index)
             if q is None:
@@ -189,7 +192,6 @@ class TreeClassifier:
             return Node(lst_of_index, q, make_tree(f), make_tree(t))
 
         self.tree = make_tree(range(len(x_train)))
-
 
     def pracdict(self, x_test):
         if not self.is_raedy:
@@ -209,8 +211,8 @@ class TreeClassifier:
                 g, ch = pridct(x_test[i], self.tree)
                 pridcttions.append(g)
             return pridcttions
-            
-            
+
+
 def accuracy_score(y_test, pridcttions):
     t = 0
     f = 0
@@ -220,3 +222,5 @@ def accuracy_score(y_test, pridcttions):
         else:
             f += 1
     return t / (t + f)
+
+
