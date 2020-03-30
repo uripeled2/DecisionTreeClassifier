@@ -1,9 +1,10 @@
 frome load_data import x_train, x_test, y_train, y_test
-from tree_form import *
+from DecisionTreeClassifier import *
 
-
+# train and test my_classifier
 my_classifier = TreeClassifier()
 my_classifier.fit(x_train, y_train)
+acc = accuracy_score(y_train, my_classifier.pracdict(x_train))
 
 
 # draw
