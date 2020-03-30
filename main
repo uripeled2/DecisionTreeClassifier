@@ -8,5 +8,5 @@ acc = accuracy_score(y_train, my_classifier.pracdict(x_train))
 
 
 # draw
-lst = [Pick(True, 0), Pick(True, 1), Pick(False, 1), Pick(False, 2), Pick(False, 0)]
+lst = [Pick(False, 1), Pick(False, 2), Pick(False, 0)]
 my_classifier.tree.display(my_classifier, lst)
