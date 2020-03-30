@@ -3,7 +3,7 @@
 
 I make a gogle form in goal to collect data on pepole opinion about agricultural crime.
 
-The file load_data takes the information from csv and manipulation so I can work with it.
+The file load_data takes the information from csv file and manipulation so I can work with it.
 
 The file DecisionTreeClassifier implementaion Tree Classifier.
 
