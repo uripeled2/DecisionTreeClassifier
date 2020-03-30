@@ -1,0 +1,118 @@
+# data manipulation
+
+import random
+
+def is_numeric(value):
+    """Test if a value is numeric."""
+    return isinstance(value, int) or isinstance(value, float)
+
+# Collecting data
+
+# data  = [
+#     [anser[0], anser[1], ...]
+#     [same]
+#     [same]
+#     ...
+# ]
+
+data = [[]]
+classes = []
+dict_ques_title = {0: "ques about: ", 1: "ques detail: "}
+dict_title = {0: "data: ", 1: "guess: ", 2: "chances: "}
+dict_ques_detail = {1: "כלל לא מסכים", 2: "לא מסכים", 3: "באמצע", 4: "מסכים", 5: "מסכים מאוד", None: "None"}
+with open("data.csv", encoding="utf-8") as f:
+    for i , line in enumerate(f.readlines()):
+        if i == 0:
+            line = line.replace("\"", "").replace(".", "")
+            #print(line)
+            start = True
+            new = True
+            item = ""
+            for index, let in enumerate(line):
+                if start and let == ",":
+                    start = False
+                elif not start and let == ",":
+                    classes.append(item)
+                    item = ""
+                    new = True
+                elif not start:
+                    try:
+                        int(let)
+                        continue
+                    except:
+                        if new:
+                            new = False
+                            continue
+                        item += let
+            continue
+
+        if i != 1:
+            data.append([])
+        line = line.replace("\"", "")
+        flag = True
+        item = ""
+        num = 0
+        for let in line:
+            if num < 2 and let == "‎":
+                num += 1
+            elif flag and num == 2:
+                flag = False
+                continue
+            elif num >= 2:
+                if let == ",":
+                    data[i - 1].append(item)
+                    item = ""
+                else:
+                    item += let
+
+    f.close()
+
+dict_places = {"מושב": 0, "יישוב": 0, "עיר": 2, "קיבוץ": 1, "UN": -1, None: "None"}
+
+
+def data_encode(data_s):
+    data = [[]]
+    for i_lst, lst in enumerate(data_s):
+        if i_lst != 0:
+            data.append([])
+        for item in lst:
+            try:
+                data[i_lst].append(int(item))
+            except:
+                if dict_places.get(item) is None:
+                    item = "UN"
+                data[i_lst].append(dict_places[item])
+    return data
+
+data = data_encode(data)
+def delte_nosie(data):
+  for lst in data:
+      if lst[0] == -1:
+          data.remove(lst)
+  return data
+
+data = delte_nosie(data)
+  
+LABEL = 0
+
+
+def find_options(data, label):
+    unique = set()
+    for lst in data:
+        for i, item in enumerate(lst):
+            if i == label:
+                unique.add(item)
+                break
+    return unique
+
+
+def decode_options(label):
+    if label == 0:
+        # dict = {"יישוב": 0, "עיר": 2, "קיבוץ": 1, "UN": -1, None: "None"}
+        dict = {0: "יישוב/מושב", 2: "עיר", 1: "קיבוץ", -1: "UN", None: "None"}
+    else:
+        dict = dict_ques_detail
+    return dict
+
+
+dict_guess = decode_options(LABEL)
