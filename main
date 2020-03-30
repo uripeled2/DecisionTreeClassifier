@@ -1,0 +1,11 @@
+frome load_data import x_train, x_test, y_train, y_test
+from tree_form import *
+
+
+my_classifier = TreeClassifier()
+my_classifier.fit(x_train, y_train)
+
+
+# draw
+lst = [Pick(True, 0), Pick(True, 1), Pick(False, 1), Pick(False, 2), Pick(False, 0)]
+my_classifier.tree.display(my_classifier, lst)
