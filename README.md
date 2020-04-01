@@ -1,9 +1,9 @@
 
 # form_DecisionTree
 
-I make a gogle form in goal to collect data on pepole opinion about agricultural crime.
+I made a google form document in order to collect data regarding people’s opinions about agricultureal crime.
 
-The file load_data takes the information from csv file and manipulation so I can work with it.
+The file load data took the information from the csv file and manipulated it which aloud me to work with the data I collected.
 
 The file DecisionTreeClassifier implementaion Tree Classifier.
 
