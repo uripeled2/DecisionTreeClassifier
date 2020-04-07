@@ -1,4 +1,4 @@
-frome load_data import x_train, x_test, y_train, y_test
+from load_data import x_train, x_test, y_train, y_test
 from DecisionTreeClassifier import *
 
 # train and test my_classifier
